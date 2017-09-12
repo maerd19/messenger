@@ -1,0 +1,42 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="messenger-login">
+  <template>
+    <style>
+      :host{
+        display: block;
+      }
+      paper-button{
+        color: white;
+        margin: 1em 0 0 0;
+        background-color: var(--paper-red-a100);
+      }
+    </style>
+    <form>
+      <paper-input label="Correo electrónico" type="email" required="true"></paper-input>
+      <paper-input label="Contraseña" type="password" required="true"></paper-input>
+
+      <paper-button raised id="button">Ingresar</paper-button>
+    </form>
+
+  </template>
+
+  <script>
+
+    class MessengerLogin extends Polymer.Element {
+      static get is() { return 'messenger-login'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'mundo'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MessengerLogin.is, MessengerLogin);
+  </script>
+</dom-module>

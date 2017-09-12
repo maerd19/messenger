@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-app.html">
+<link rel="import" href="../messenger-elements/messenger-login.html">
+
+<dom-module id="messenger-app">
+  <template>
+    <firebase-app
+      auth-domain="messengerfacilito-dec25.firebaseapp.com"
+      database-url="https://messengerfacilito-dec25.firebaseio.com"
+      api-key="AIzaSyDS5EXoPIoPgyvs94BGCazY_xAMxs1GdNU"
+    >
+    </firebase-app>
+    <style>
+      :host {
+        display: block;
+      }
+      messenger-login{
+        width: 80%;
+        max-width: 400px;
+        background-color: #eee;
+        padding: 1em;
+      }
+    </style>
+    <messenger-login></messenger-login>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MessengerApp extends Polymer.Element {
+      static get is() { return 'messenger-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'mundo'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MessengerApp.is, MessengerApp);
+  </script>
+</dom-module>
