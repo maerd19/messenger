@@ -18,11 +18,12 @@
       }
     </style>
 
-    <firebase-auth id="autenticacion"></firebase-auth>
+    <firebase-auth id="auth"></firebase-auth>
 
     <iron-form>
       <form id="form">
         <paper-input label="Correo electrónico" type="email" required="true" id="email" value="{{email}}"></paper-input>
+        <paper-input label="Contraseña" type="password" required="true" id="password" value="{{password}}"></paper-input>
         <paper-input label="Contraseña" type="password" required="true" id="password" value="{{password}}"></paper-input>
 
         <paper-checkbox id="checkbox" active="{{signUp}}">
@@ -38,7 +39,7 @@
 
   </template>
 
-  <script>
+  <script src="a.js?2">
 
     class MessengerLogin extends Polymer.Element {
       static get is() { return 'messenger-login'; }
@@ -56,26 +57,22 @@
             }
           }
 
-      handleTap() {
-        this.$.autenticacion.signOut()
-        this.sendForm()
-        this.$.autenticacion.auth.onAuthStateChanged(function(u){this.handleAuth(u)})
-      }
+      handleTap() { this.sendForm() }
 
       sendForm() {
         var self = this;
         if(this.signUp){
-          this.$.autenticacion.createUserWithEmailAndPassword(this.email, this.password)
+          this.$.auth.createUserWithEmailAndPassword(this.email, this.password)
             .then(function(user){
               self.createUser(user)
-              console.log("Felicidades!!! Usuario Creado");
+              console.log("Usuario Creado");
             })
         }else{
-          this.$.autenticacion.signInWithEmailAndPassword(this.email, this.password)
-          .then(function(user){
-            self.user = user
-            console.log("Sesión iniciada");
-          })
+          this.$.auth.signInWithEmailAndPassword(this.email, this.password)
+            .then(function(user){
+              self.user = user
+              console.log("Sesión Iniciad");
+            })
         }
       }
 
@@ -85,17 +82,7 @@
           email: firebaseUser.email,
           uid: firebaseUser.uid,
           photoURL: "https://goo.gl/h2GRTv"
-
         })
-        this.user = firebaseUser
-      }
-
-      handleAuth(u){
-        if(u){
-          this.fire("login")
-        }else{
-          this.fire("logout")
-        }
       }
     }
 
