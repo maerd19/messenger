@@ -57,13 +57,16 @@
           }
 
       handleTap() {
+        let self = this
         this.$.autenticacion.signOut()
         this.sendForm()
-        this.$.autenticacion.auth.onAuthStateChanged(function(u){this.handleAuth(u)})
+        this.$.autenticacion.auth.onAuthStateChanged(function(u){
+        self.handleAuth(u)
+        })
       }
 
       sendForm() {
-        var self = this;
+        let self = this;
         if(this.signUp){
           this.$.autenticacion.createUserWithEmailAndPassword(this.email, this.password)
             .then(function(user){
@@ -90,11 +93,13 @@
         this.user = firebaseUser
       }
 
-      handleAuth(u){
+      handleAuth(u) {
+        let self = this
         if(u){
-          this.fire("login")
+          self.dispatchEvent(new CustomEvent('login'));
         }else{
-          this.fire("logout")
+          console.log("Cerre sesión");
+          self.dispatchEvent(new CustomEvent('logout'));
         }
       }
     }

@@ -1,0 +1,27 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="messenger-settings-menu">
+  <template>
+    <firebase-auth id="auth" user="{{user}}"></firebase-auth>
+    <button on-click="logout">Cerrar sesión</button>
+  </template>
+
+  <script>
+
+  class MessengerSettingsMenu extends Polymer.Element {
+    static get is() { return 'messenger-settings-menu'; }
+
+    static get properties() {
+            return {
+              user: { type: Object }
+            }
+          }
+
+    logout() {
+      this.$.auth.signOut()
+    }
+  }
+  window.customElements.define(MessengerSettingsMenu.is, MessengerSettingsMenu);
+
+  </script>
+</dom-module>
