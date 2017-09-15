@@ -58,7 +58,6 @@
 
       handleTap() {
         let self = this
-        this.$.autenticacion.signOut()
         this.sendForm()
         this.$.autenticacion.auth.onAuthStateChanged(function(u){
         self.handleAuth(u)
@@ -96,9 +95,10 @@
       handleAuth(u) {
         let self = this
         if(u){
+          console.log("Inicia sesión");
           self.dispatchEvent(new CustomEvent('login'));
         }else{
-          console.log("Cerre sesión");
+          console.log("Cerré sesión");
           self.dispatchEvent(new CustomEvent('logout'));
         }
       }

@@ -31,8 +31,8 @@
       }
     </style>
     <div id="contenedor" class="layout horizontal">
-      <messenger-login class="oculto" id="login" user="{{user}}" on-login="authenticate" on-logout="signOut"></messenger-login>
-      <messenger-home id="home" ></messenger-home>
+      <messenger-login id="login" user="{{user}}" on-login="authenticate"></messenger-login>
+      <messenger-home id="home" class="oculto"></messenger-home>
     </div>
 
   </template>
@@ -53,14 +53,15 @@
       }
 
       authenticate(e) {
-        console.log("Recibí cambio en el login");
-        this.$.login.hide()
-        this.$.home.show()
+        console.log("Recibí cambio en el login. Oculta login y muestra home");
+        this.$.login.classList.add("oculto")
+        this.$.home.classList.remove("oculto")
       }
 
       signOut(e) {
-        this.$.login.show()
-        this.$.home.hide()
+        console.log("Recibí cambio en el logout. Oculta home y muestra login");
+        this.$.login.classList.remove("oculto")
+        this.$.home.classList.add("oculto")
       }
 
     }

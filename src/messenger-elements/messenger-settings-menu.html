@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 
 <dom-module id="messenger-settings-menu">
   <template>
@@ -18,6 +19,7 @@
           }
 
     logout() {
+      console.log("trolololo");
       this.$.auth.signOut()
     }
   }
